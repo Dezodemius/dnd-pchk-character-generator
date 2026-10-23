@@ -7,3 +7,4 @@ output/
 *.pchk.pptx
 *.pchk.pdf
 *.pchk.preview/
+.skill-ci/

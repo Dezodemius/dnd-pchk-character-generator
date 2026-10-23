@@ -1,7 +1,8 @@
-* text=auto eol=crlf
-*.pptx binary
-*.ttf binary
+* text=auto eol=lf
 *.png binary
 *.jpg binary
+*.pptx binary
+*.pdf binary
+*.ttf binary
 *.zip binary
 *.skill binary

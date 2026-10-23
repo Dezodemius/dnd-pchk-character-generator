@@ -13,11 +13,9 @@ from pptx import Presentation
 import pypdfium2 as pdfium
 
 ROOT = Path(__file__).resolve().parents[1]
-SKILL = ROOT / "pchk-character"
+SKILL = ROOT / "skills" / "pchk-character"
 sys.path.insert(0, str(SKILL / "scripts"))
-sys.path.insert(0, str(ROOT / "tools"))
 import pchk
-import package
 
 
 class SkillTests(unittest.TestCase):
@@ -88,23 +86,6 @@ class SkillTests(unittest.TestCase):
         self.assertIn("заряды: 3", pchk.shape_by_name(deck.slides[0], "Заголовок особого ресурса").text)
         portrait = next(x for x in deck.slides[1].shapes if x.name.startswith("Портрет"))
         self.assertGreater(portrait.crop_left + portrait.crop_right + portrait.crop_top + portrait.crop_bottom, 0)
-
-    def test_release_tag_and_reproducible_archives(self):
-        for value in ["v1.2.3.4", "1.2.3", "1.2.3.4-beta", "1.2.3.4/extra", "1a2b3c4"]:
-            with self.subTest(tag=value), self.assertRaises(ValueError):
-                package.validate_version(value)
-        first = package.package(self.work / "first", "0.1.0.0")
-        second = package.package(self.work / "second", "0.1.0.0")
-        self.assertEqual(first.read_bytes(), second.read_bytes())
-        self.assertEqual(first.read_bytes(), first.with_suffix(".skill").read_bytes())
-        with zipfile.ZipFile(first) as archive:
-            self.assertIsNone(archive.testzip())
-            self.assertIn("pchk-character/SKILL.md", archive.namelist())
-            self.assertNotIn("pchk-character/scripts/__pycache__/pchk.pyc", archive.namelist())
-            self.assertTrue(all(x.startswith("pchk-character/") for x in archive.namelist()))
-            manifest = json.loads(archive.read("pchk-character/MANIFEST.json"))
-            for name, digest in manifest["files"].items():
-                self.assertEqual(hashlib.sha256(archive.read(name)).hexdigest(), digest)
 
 
 if __name__ == "__main__":

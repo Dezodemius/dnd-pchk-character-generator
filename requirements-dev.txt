@@ -1,2 +1,2 @@
--r pchk-character/requirements.txt
+-r skills/pchk-character/requirements.txt
 PyYAML>=6,<7

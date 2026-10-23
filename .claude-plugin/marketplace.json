@@ -1,0 +1,14 @@
+{
+  "name": "pchk-character",
+  "owner": {
+    "name": "Egor Gladkov (Dezodemius)",
+    "url": "https://github.com/Dezodemius"
+  },
+  "plugins": [
+    {
+      "name": "pchk-character",
+      "source": "./",
+      "description": "Создаёт по описанию героя редактируемый лист персонажа в стиле Подземелий Чикен Карри (ПЧК): PPTX и PDF для печати, два альбомных листа A5 с характеристиками в щитах, способностями, вещами, портретом и предысторией."
+    }
+  ]
+}

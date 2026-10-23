@@ -7,7 +7,7 @@ import sys
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-skill = ROOT / "pchk-character"
+skill = ROOT / "skills" / "pchk-character"
 source = (skill / "SKILL.md").read_text(encoding="utf-8")
 match = re.match(r"\A---\n(.*?)\n---\n", source, re.S)
 assert match, "Missing YAML frontmatter"

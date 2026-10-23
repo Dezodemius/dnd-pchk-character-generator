@@ -1,0 +1,18 @@
+{
+  "name": "pchk-character",
+  "description": "Создаёт по описанию героя редактируемый лист персонажа в стиле Подземелий Чикен Карри (ПЧК): PPTX и PDF для печати, два альбомных листа A5 с характеристиками в щитах, способностями, вещами, портретом и предысторией.",
+  "author": {
+    "name": "Egor Gladkov (Dezodemius)",
+    "url": "https://github.com/Dezodemius"
+  },
+  "homepage": "https://github.com/Dezodemius/dnd-pchk-character-generator",
+  "repository": "https://github.com/Dezodemius/dnd-pchk-character-generator",
+  "license": "Apache-2.0",
+  "keywords": [
+    "dnd",
+    "dnd5e",
+    "ttrpg",
+    "agent-skill",
+    "pchk"
+  ]
+}

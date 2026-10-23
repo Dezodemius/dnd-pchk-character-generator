@@ -9,30 +9,22 @@
 можно задать другую редакцию или авторские правила. Для JSON, импортируемого в Long Story Short,
 есть отдельный [lss-character](https://github.com/Dezodemius/dnd-lss-character-generator).
 
-## Скачать
+## Установка
 
-- [pchk-character.zip](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/pchk-character.zip) — для установки агентам или прикрепления в чат.
-- [pchk-character.skill](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/pchk-character.skill) — тот же ZIP для интерфейсов импорта скиллов.
-- [SHA256SUMS](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/SHA256SUMS) — контрольные суммы.
+Готовые файлы лежат в [релизах](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest).
 
-Архив содержит одну папку `pchk-character/` с `SKILL.md`, шаблоном, скриптами, примером, зависимостями
-и шрифтами. Для исполнения нужен Python 3.10+. PowerPoint не обязателен.
+| Где пользуетесь | Как подключить |
+| --- | --- |
+| **claude.ai**, Claude Desktop | Скачать [`pchk-character.zip`](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/pchk-character.zip) → Настройки → Возможности → Skills → загрузить. В Desktop можно открыть [`pchk-character.skill`](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/pchk-character.skill) двойным кликом |
+| **Claude Code** | `/plugin marketplace add Dezodemius/agent-skills`, затем `/plugin install pchk-character@dezodemius-skills` |
+| **Codex, Gemini CLI, Cursor, GitHub Copilot, OpenCode** и другие агенты | `npx skills add Dezodemius/dnd-pchk-character-generator` |
+| **ChatGPT, Gemini, DeepSeek, Qwen, Grok, Алиса, GigaChat** и другие чаты | Скачать [`pchk-character.prompt.md`](https://github.com/Dezodemius/dnd-pchk-character-generator/releases/latest/download/pchk-character.prompt.md) и приложить в начале чата или вставить в инструкции проекта / GPT / Gem |
 
-## Установка агентом
+Подробно по каждой платформе — в [каталоге](https://github.com/Dezodemius/agent-skills#установка).
 
-Можно дать агенту ссылку на репозиторий и попросить установить скилл. Инструкция для агента:
-
-1. Скачай архив из последнего релиза и проверь SHA-256 по `SHA256SUMS`, если доступны оба файла.
-2. Распакуй папку `pchk-character` в каталог скиллов своего агента. Для Codex обычно это
-   `~/.codex/skills/`, для Claude Code — `~/.claude/skills/`; для других агентов используй их
-   документированный каталог. Не заменяй остальные скиллы и настройки пользователя.
-3. Прочитай `pchk-character/SKILL.md`. Установи зависимости выбранным Python:
-   `python -m pip install -r <путь>/pchk-character/requirements.txt`.
-4. Проверь установку: `python <путь>/pchk-character/scripts/pchk.py validate <путь>/pchk-character/assets/example.draft.json`.
-5. Если агент обнаруживает скиллы только при старте, начни новую сессию.
-
-Для агента без поддержки установки достаточно распаковать архив в рабочую папку и дать ему
-путь к `SKILL.md`. Операционная система не должна иметь доступ к файлам автора репозитория.
+Скиллу нужны Python 3.10+ и зависимости из `requirements.txt`: полноценно он работает в агенте или чате,
+который умеет запускать код. Однофайловая версия `.prompt.md` в обычном чате поможет составить
+JSON-черновик, а собрать PPTX и PDF можно локально (см. «Локальный запуск»).
 
 ## Использование в браузерном чате
 
@@ -54,13 +46,13 @@
 ## Локальный запуск
 
 ```text
-python -m pip install -r pchk-character/requirements.txt
-python pchk-character/scripts/pchk.py validate hero.draft.json
-python pchk-character/scripts/pchk.py build hero.draft.json --pdf --preview
+python -m pip install -r skills/pchk-character/requirements.txt
+python skills/pchk-character/scripts/pchk.py validate hero.draft.json
+python skills/pchk-character/scripts/pchk.py build hero.draft.json --pdf --preview
 ```
 
-Черновик составляй по [формату](pchk-character/references/draft-format.md) или
-[примеру](pchk-character/assets/example.draft.json). Картинка задаётся путём относительно JSON.
+Черновик составляй по [формату](skills/pchk-character/references/draft-format.md) или
+[примеру](skills/pchk-character/assets/example.draft.json). Картинка задаётся путём относительно JSON.
 Файлы появятся рядом с черновиком; `--output-dir` меняет папку, `--force` разрешает пересборку.
 
 - `--renderer auto` — PowerPoint в Windows, если он доступен; иначе переносимый PDF-экспорт.
@@ -73,29 +65,22 @@ PPTX остаётся редактируемым; сохранение в PDF д
 Если текст не помещается, сборщик сообщает об ошибке, не обрезает описание и не выдаёт старый PDF
 за новый. Перед использованием посмотри оба PNG: проверка размеров не заменяет проверку глазами.
 
-## CI и выпуски
+## Выпуск релиза
 
-CI проверяет структуру скилла, валидацию данных, сборку PPTX/PDF/PNG, переполнение и целостность
-архивов на Windows и Linux (Python 3.10/3.12). Переносимый экспорт не требует Office на CI.
+Релиз собирается автоматически по тегу из четырёх чисел на коммите из `main`:
 
-Выпуск создаётся при отправке тега из **четырёх чисел**, без `v` и суффиксов:
-
-```text
-git tag 0.1.0.0
-git push origin 0.1.0.0
+```bash
+git tag 1.0.0.0 && git push origin 1.0.0.0
 ```
 
-Теги `v0.1.0.0`, `0.1.0`, `0.1.0.0-beta` не выпускают релиз. Коммит тега должен входить в `main`.
-CD повторяет проверки, собирает ZIP и `.skill`, записывает версию и манифест SHA-256 внутрь архива,
-загружает все файлы в черновик GitHub Release и только затем публикует его. Готовый опубликованный
-релиз повторным запуском не перезаписывается; незавершённый черновик можно повторить.
+Общий CD и проверки живут в [Dezodemius/agent-skills](https://github.com/Dezodemius/agent-skills).
 
-Локальная проверка и упаковка:
+Собственные проверки (валидация данных, сборка PPTX/PDF/PNG, переполнение текста) запускаются
+в общем CI на Windows и Linux. Локально:
 
 ```text
 python -m pip install -r requirements-dev.txt
 python -X utf8 tools/check.py
-python tools/package.py --version 0.1.0.0
 ```
 
 ## Лицензии и источники
