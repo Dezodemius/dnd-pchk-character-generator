@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+output/
+*.render-report.json
+*.pchk.pptx
+*.pchk.pdf
+*.pchk.preview/

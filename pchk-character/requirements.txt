@@ -1,0 +1,4 @@
+python-pptx>=1.0.2,<2
+Pillow>=10.4,<13
+reportlab>=4.2,<5
+pypdfium2>=4.30,<6

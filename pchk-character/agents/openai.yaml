@@ -1,0 +1,4 @@
+interface:
+  display_name: "Лист персонажа ПЧК"
+  short_description: "Создаёт листы ПЧК в редактируемом PPTX и PDF"
+  default_prompt: "Используй $pchk-character, чтобы создать лист персонажа в стиле Подземелий Чикен Карри по моему описанию."

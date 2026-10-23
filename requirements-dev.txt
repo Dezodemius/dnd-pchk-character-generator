@@ -1,0 +1,2 @@
+-r pchk-character/requirements.txt
+PyYAML>=6,<7

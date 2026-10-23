@@ -1,0 +1,27 @@
+PChK Character Sheet Generator
+Copyright 2026 Egor Gladkov (Dezodemius)
+https://github.com/Dezodemius/dnd-pchk-character-generator
+
+Original code and instructions: Apache License 2.0 (LICENSE).
+
+THIRD-PARTY MATERIALS
+
+The decorative background, shields and fixed ability labels in
+pchk-character/assets/character-sheet.pptx were extracted from the
+user-provided 21_brb_Sfinkterion.pdf of the show Podzemelya Chicken Curry.
+This repository is unofficial. No ownership of that artwork or blanket
+redistribution rights are claimed; the Apache code license does not cover
+third-party artwork or trademarks. The original paid PDF and character
+portrait are not distributed.
+
+PT Serif fonts: Copyright ParaType and the authors named in
+pchk-character/assets/fonts/ptserif/OFL.txt.
+Source: https://github.com/google/fonts/tree/main/ofl/ptserif
+License: SIL Open Font License 1.1, included alongside the fonts.
+
+Anton font: Copyright 2020 The Anton Project Authors.
+Source: https://github.com/google/fonts/tree/main/ofl/anton
+License: SIL Open Font License 1.1, included alongside the font.
+
+Microsoft Cambria and Impact are referenced in editable PPTX text but are
+not bundled. The portable renderer uses the licensed fonts above.
